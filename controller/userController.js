@@ -46,15 +46,17 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-  const data = await User.findOne({ email: req.body.email });
-  if (!data) {
+  
+  const data = await User.find({ email: req.body.email });
+  //console.log(data);
+  if (data.length == 0) {
     return res.status(203).json("Email is not exist");
   }
-  bcrypt.compare(req.body.password, data.password).then((same) => {
+  bcrypt.compare(req.body.password, data[0].password).then((same) => {
     if (!same) {
       return res.status(400).json("Password is not correct");
     }
-    const token = jwt.sign(data.toJSON(), "HS256", {
+    const token = jwt.sign(data[0].toJSON(), "HS256", {
       expiresIn: "24h",
     });
     res.status(200).json({ token: token });

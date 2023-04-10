@@ -48,7 +48,7 @@ const signUp = async (req, res) => {
 const signIn = async (req, res) => {
   if(!req.body.email) return res.json("data is missing")
 //  return res.json(req.body.email)
-  let data
+  let data = undefined
   try{
    data = await User.findOne({ email: "amr" });
   }catch(err){

@@ -9,7 +9,7 @@ cloudinary.config({
   secure: true,
 });
 const signUp = async (req, res) => {
-  return res.json(req.body)
+ // return res.json(req.body)
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;

@@ -53,10 +53,17 @@ const getByCategory = async (req, res) => {
   let result = await Product.find({ category: category });
   return res.json(result);
 };
+
+const getProducts = async (req, res) => {
+  let result = await Product.find({  });
+  return res.json(result);
+};
+
 module.exports = {
   addProduct,
   getProduct,
   deleteProduct,
   getBySection,
   getByCategory,
+  getProducts
 };

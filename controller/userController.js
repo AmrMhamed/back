@@ -13,15 +13,15 @@ const signUp = async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
-  const pic = req.file ? req.file.filename : undefined;
+//  const pic = req.file ? req.file.filename : undefined;
 
-  if (!name || !email || !password || !pic) {
+  if (!name || !email || !password ) {
     res.status(400).json("data is missing");
     return;
   }
-  const result = await cloudinary.uploader.upload(req.file.path, {
+ /* const result = await cloudinary.uploader.upload(req.file.path, {
     folder: "products",
-  });
+  }); */
   let data = await User.find({ email: email });
   if (data.length) {
     res.status(401).json("user already exist");
@@ -37,7 +37,7 @@ const signUp = async (req, res) => {
         name: name,
         email: email,
         password: hashed,
-        pic: result.url,
+       // pic: result.url,
       });
     } catch {
       return res.status(400).json("Please enter all required fields");

@@ -52,7 +52,7 @@ const signIn = async (req, res) => {
 //  return res.json(req.body.email)
   let data = undefined
   try{
-   data = await User.findOne({ email: "amr" });
+   data = await User.findOne({ email: req.body.email });
   }catch(err){
     return res.status(401).json(err)
   }

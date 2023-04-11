@@ -9,6 +9,7 @@ cloudinary.config({
   secure: true,
 });
 const signUp = async (req, res) => {
+  return res.json(req.body)
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -46,7 +47,7 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-  return res.json(req.body)
+  
   if(!req.body.email) return res.json("data is missing")
 //  return res.json(req.body.email)
   let data = undefined
